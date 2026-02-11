@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <meta name="description" content="Portfólio de Backend Developer - Java, Python, Spring e Soluções Scaláveis.">
     <title>Theuzz Dev | Backend Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -16,14 +18,13 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        mono: ['"Fira Code"', 'monospace'],
-                    },
+                    fontFamily: { mono: ['"Fira Code"', 'monospace'] },
                     colors: {
                         'bg-main': '#0a0a0a',
-                        'surface': '#121212',
+                        'surface': '#111111',
                         'accent': '#ffffff',
-                        'muted': '#525252'
+                        'muted': '#888888',
+                        'primary': '#22c55e'
                     }
                 }
             }
@@ -32,260 +33,196 @@
 
     <style>
         body {
-            background-color: var(--bg, #0a0a0a);
+            background-color: #0a0a0a;
             color: #e5e5e5;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent);
+            background-image: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%);
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-            background: radial-gradient(
-                400px circle at var(--x) var(--y),
-                rgba(255, 255, 255, 0.06),
-                transparent 80%
-            );
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        
         .cursor-blink { animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.3s cubic-bezier(0.3, 0, 0, 1);
+            transform: translateY(15px);
+            transition: all 0.4s ease-out;
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        #to-top-btn {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        #to-top-btn.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+
+        /* Aumenta o tamanho dos ícones ao passar o mouse */
+        .tech-icon { transition: transform 0.2s; }
+        .tech-icon:hover { transform: scale(1.1); }
     </style>
 </head>
-<body class="font-mono antialiased selection:bg-white selection:text-black">
+<body class="font-mono antialiased selection:bg-primary selection:text-black">
 
-    <nav class="fixed w-full top-0 z-50 bg-bg-main/80 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tighter">THEUZZ<span class="text-muted">_DEV</span></a>
-            <div class="space-x-8 text-sm hidden md:flex items-center">
-                <a href="#about" class="hover:text-white text-muted transition-colors">/sobre</a>
-                <a href="#skills" class="hover:text-white text-muted transition-colors">/skills</a>
-                <a href="#projects" class="hover:text-white text-muted transition-colors">/projetos</a>
-                <a href="#contato" class="border border-white px-4 py-1.5 text-xs hover:bg-white hover:text-black transition-all duration-300">FALAR_COMIGO</a>
+    <nav class="fixed w-full top-0 z-50 bg-bg-main/90 backdrop-blur-sm border-b border-zinc-800/50">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex justify-between items-center">
+            <a href="#" class="font-bold tracking-tighter text-white">THEUZZ<span class="text-primary">.DEV</span></a>
+            <div class="space-x-6 text-xs font-bold hidden md:flex items-center text-zinc-400">
+                <a href="#projects" class="hover:text-white transition-colors">PROJETOS</a>
+                <a href="#skills" class="hover:text-white transition-colors">STACK</a>
+                <a href="#contato" class="bg-white text-black px-4 py-1.5 hover:bg-zinc-200 transition-colors">CONTATAR</a>
             </div>
-            <a href="#contato" class="md:hidden border border-white px-4 py-1 text-xs hover:bg-white hover:text-black transition-all duration-300">CONTATO</a>
         </div>
     </nav>
 
-    <main>
-        <header class="min-h-screen flex flex-col justify-center items-start max-w-6xl mx-auto px-6 pt-16">
-            <div class="space-y-6">
-                <p class="text-muted text-sm reveal">olá, mundo. eu sou</p>
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter text-white reveal" style="transition-delay: 100ms;">
-                    THEUZZ DEV
-                </h1>
-                <div class="text-xl md:text-2xl text-muted h-8 reveal" style="transition-delay: 200ms;">
-                    &gt; <span id="typewriter"></span><span class="cursor-blink">_</span>
-                </div>
-                
-                <div class="pt-8 flex gap-4 reveal" style="transition-delay: 300ms;">
-                    <a href="https://github.com/mazinn444" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 border border-zinc-700 bg-surface px-6 py-3 hover:border-white transition-all duration-300 group">
-                        <svg class="group-hover:stroke-black stroke-white transition-colors" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        <span>GITHUB</span>
-                    </a>
-                </div>
-            </div>
-        </header>
+    <main class="max-w-5xl mx-auto px-6">
         
-        <section id="about" class="py-24 bg-surface border-y border-zinc-800">
-            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 items-center">
-                <div class="md:col-span-1 reveal">
-                    <h2 class="text-3xl font-bold mb-4"><span class="text-muted">01.</span> Sobre Mim</h2>
+        <header class="min-h-[85vh] flex flex-col justify-center items-start pt-20">
+            <div class="space-y-4 w-full">
+                <p class="text-primary text-sm font-bold reveal">/// BACKEND DEVELOPER</p>
+                
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-white reveal leading-tight">
+                    Matheus Nascimento
+                </h1>
+                
+                <div class="text-lg md:text-xl text-zinc-400 reveal h-8 flex items-center">
+                    <span class="mr-2">></span> 
+                    <span id="typewriter"></span><span class="cursor-blink text-primary">_</span>
                 </div>
-                <div class="md:col-span-2 text-muted leading-relaxed space-y-4 reveal" style="transition-delay: 150ms;">
-                    <p>
-                        Sou um desenvolvedor Backend apaixonado por construir sistemas robustos e escaláveis. Meu foco é transformar ideias complexas em código limpo, eficiente e otimizado.
-                    </p>
-                    <p>
-                        Acredito que a melhor solução é aquela que não apenas resolve o problema, mas que também é sustentável e fácil de manter. Estou sempre explorando novas tecnologias e arquiteturas para aprimorar minhas habilidades e entregar o melhor resultado possível.
-                    </p>
-                </div>
-            </div>
-        </section>
 
-        <section id="skills" class="py-24">
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-3xl font-bold mb-16 reveal"><span class="text-muted">02.</span> Tecnologias</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
-                    
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="h-12 w-12"/>
-                        <span class="text-sm">Python</span>
-                    </div>
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300" style="transition-delay: 100ms;">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="h-12 w-12"/>
-                        <span class="text-sm">Java</span>
-                    </div>
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300" style="transition-delay: 200ms;">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg" alt="Lua" class="h-12 w-12"/>
-                        <span class="text-sm">Lua</span>
-                    </div>
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300" style="transition-delay: 300ms;">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-12 w-12"/>
-                        <span class="text-sm">JavaScript</span>
-                    </div>
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300" style="transition-delay: 400ms;">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="h-12 w-12"/>
-                        <span class="text-sm">Git</span>
-                    </div>
-                    <div class="reveal bg-surface border border-zinc-800 p-6 flex flex-col items-center justify-center gap-4 hover:border-white hover:-translate-y-2 transition-all duration-300" style="transition-delay: 500ms;">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="h-12 w-12"/>
-                        <span class="text-sm">PostgreSQL</span>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-24 bg-surface border-y border-zinc-800">
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-3xl font-bold mb-16 reveal"><span class="text-muted">03.</span> Projetos</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <article class="reveal group flex flex-col border border-zinc-800 bg-bg-main p-8 hover:border-white transition-colors duration-300">
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="text-xs text-blue-400 font-bold">JAVA • JAVAFX</span>
-                                <svg class="opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">BlueWave</h3>
-                            <p class="text-muted text-sm leading-relaxed">
-                                Um player de música moderno e elegante. Focado em experiência de usuário e performance, com interface limpa e responsiva.
-                            </p>
-                        </div>
-                        <a href="https://github.com/mazinn444/BlueWave" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block border border-zinc-600 px-6 py-2 text-xs hover:bg-white hover:text-black transition-all duration-300 w-fit">
-                            VER NO GITHUB
-                        </a>
-                    </article>
-
-                    <article class="reveal group flex flex-col border border-zinc-800 bg-bg-main p-8 hover:border-white transition-colors duration-300" style="transition-delay: 150ms;">
-                        <div class="flex-grow">
-                             <div class="flex justify-between items-start mb-4">
-                                <span class="text-xs text-green-400 font-bold">LUA • JAVA</span>
-                                <svg class="opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors">MoonGUI</h3>
-                            <p class="text-muted text-sm leading-relaxed">
-                                Biblioteca inovadora que transforma scripts Lua em aplicações JavaFX nativas, atuando como um "compilador" de GUI.
-                            </p>
-                        </div>
-                        <a href="https://github.com/mazinn444/MoonGUI" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block border border-zinc-600 px-6 py-2 text-xs hover:bg-white hover:text-black transition-all duration-300 w-fit">
-                            VER NO GITHUB
-                        </a>
-                    </article>
-                    
-                </div>
-            </div>
-        </section>
-
-        <section id="setup" class="py-24">
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-3xl font-bold mb-16 reveal"><span class="text-muted">04.</span> Setup / IDE Favorita</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm reveal">
-                    
-                    <label class="relative p-6 border border-zinc-800 bg-surface cursor-pointer hover:border-zinc-500 transition-colors group">
-                        <input type="radio" name="ide" class="absolute opacity-0 peer">
-                        <div class="flex items-center gap-4">
-                            <span class="text-muted text-lg peer-checked:text-blue-400">[ ]</span>
-                            <span class="font-bold text-muted peer-checked:text-white">INTELLIJ IDEA</span>
-                        </div>
-                    </label>
-
-                    <label class="relative p-6 border-2 border-white bg-surface cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] group">
-                        <input type="radio" name="ide" class="absolute opacity-0 peer" checked>
-                        <div class="flex items-center gap-4">
-                            <span class="text-blue-400 text-lg font-bold">[x]</span>
-                            <span class="font-bold text-white">VS CODE</span>
-                        </div>
-                        <p class="text-xs text-muted mt-2 pl-8">Extensível, rápido e minimalista. Minha escolha principal.</p>
-                    </label>
-                    
-                    <label class="relative p-6 border border-zinc-800 bg-surface cursor-pointer hover:border-zinc-500 transition-colors group">
-                        <input type="radio" name="ide" class="absolute opacity-0 peer">
-                        <div class="flex items-center gap-4">
-                            <span class="text-muted text-lg peer-checked:text-green-400">[ ]</span>
-                            <span class="font-bold text-muted peer-checked:text-white">PYCHARM</span>
-                        </div>
-                    </label>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="py-24 bg-surface border-t border-zinc-800">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold mb-4 reveal">Vamos Conversar?</h2>
-                <p class="text-muted max-w-lg mx-auto mb-10 reveal" style="transition-delay: 150ms;">
-                    Estou sempre aberto para novas oportunidades, colaborações ou apenas um bate-papo. Sinta-se à vontade para entrar em contato.
+                <p class="max-w-xl text-muted text-sm leading-relaxed reveal pt-2">
+                    Especialista em criar arquiteturas sustentáveis e APIs de alta performance. 
+                    Transformo requisitos complexos em código limpo, testável e escalável.
                 </p>
-                <div class="flex justify-center gap-4 reveal" style="transition-delay: 300ms;">
-                    <a href="mailto:matheus2019souz@gmail.com" class="bg-white text-black px-8 py-4 font-bold hover:opacity-80 transition-opacity">
-                        ENVIAR EMAIL
-                    </a>
-                    <a href="https://github.com/mazinn444" target="_blank" rel="noopener noreferrer" class="border border-zinc-700 px-8 py-4 font-bold hover:bg-zinc-800 transition-colors">
+                
+                <div class="pt-8 flex flex-wrap gap-4 reveal">
+                    <a href="https://github.com/mazinn444" target="_blank" class="border border-zinc-700 bg-surface text-white px-8 py-3 font-bold text-sm hover:border-white hover:bg-zinc-800 transition-all flex items-center gap-3">
+                        <i class="devicon-github-original text-xl"></i>
                         VER GITHUB
                     </a>
                 </div>
             </div>
+        </header>
+
+        <section id="projects" class="py-16 border-t border-zinc-800">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3 reveal">
+                <span class="text-primary text-sm">01.</span> Projetos em Destaque
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="reveal group border border-zinc-800 bg-surface p-6 hover:border-zinc-600 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex gap-3 text-2xl">
+                            <i class="devicon-java-plain colored"></i>
+                            <i class="devicon-lua-plain text-blue-400"></i>
+                        </div>
+                        <a href="https://github.com/mazinn444/MoonGUI" target="_blank" class="text-zinc-500 hover:text-white"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">MoonGUI</h3>
+                    <p class="text-muted text-sm mb-6 h-12 overflow-hidden">
+                        Biblioteca que atua como compilador de GUI, transformando scripts Lua em interfaces nativas JavaFX.
+                    </p>
+                    <div class="text-xs text-zinc-500 font-mono border-t border-zinc-800 pt-3">
+                        > Interoperabilidade Java/Lua
+                    </div>
+                </article>
+                
+                <article class="reveal border border-zinc-800 bg-surface p-6 opacity-50 flex items-center justify-center">
+                    <p class="text-sm text-muted flex items-center gap-2">
+                        <i class="devicon-spring-original"></i> Em desenvolvimento...
+                    </p>
+                </article>
+            </div>
         </section>
+
+        <section id="skills" class="py-16 border-t border-zinc-800">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3 reveal">
+                <span class="text-primary text-sm">02.</span> Tech Stack
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                
+                <div class="p-6 border border-zinc-800 bg-surface hover:border-zinc-600 transition-colors">
+                    <strong class="block text-white mb-6 text-sm tracking-widest border-b border-zinc-800 pb-2">LINGUAGENS</strong>
+                    <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Java">
+                            <i class="devicon-java-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">Java</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Python">
+                            <i class="devicon-python-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">Python</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="JavaScript">
+                            <i class="devicon-javascript-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">JS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 border border-zinc-800 bg-surface hover:border-zinc-600 transition-colors">
+                    <strong class="block text-white mb-6 text-sm tracking-widest border-b border-zinc-800 pb-2">TOOLS</strong>
+                    <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Git">
+                            <i class="devicon-git-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">Git</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Docker">
+                            <i class="devicon-docker-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">Docker</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Postman">
+                            <i class="devicon-postman-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">Postman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 border border-zinc-800 bg-surface hover:border-zinc-600 transition-colors">
+                    <strong class="block text-white mb-6 text-sm tracking-widest border-b border-zinc-800 pb-2">OS / IDE</strong>
+                    <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="VS Code">
+                            <i class="devicon-vscode-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">VSCode</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="IntelliJ">
+                            <i class="devicon-intellij-plain colored text-4xl"></i>
+                            <span class="text-[10px] text-muted">IntelliJ</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Linux">
+                            <i class="devicon-linux-plain text-white text-4xl"></i>
+                            <span class="text-[10px] text-muted">Linux</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 tech-icon" title="Windows">
+                            <i class="devicon-windows11-original text-4xl"></i> <span class="text-[10px] text-muted">Win</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contato" class="py-20 border-t border-zinc-800 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6 reveal">Interessado?</h2>
+            <p class="text-muted mb-8 max-w-md mx-auto reveal">Estou disponível para novas oportunidades. Mande um "Hello World" e vamos conversar sobre código.</p>
+            <a href="mailto:matheus2019souz@gmail.com" class="inline-block bg-primary text-black px-8 py-4 font-bold tracking-wide hover:bg-green-400 transition-colors reveal">
+                ENVIAR EMAIL AGORA
+            </a>
+        </section>
+
     </main>
-    
-    <footer class="py-8 bg-bg-main text-center">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-muted text-xs">
-                © 2024 • DESENVOLVIDO COM <span style="color:#e25555;">&#9829;</span> POR THEUZZ DEV
-            </p>
-        </div>
+
+    <footer class="py-6 border-t border-zinc-900 text-center text-zinc-600 text-xs">
+        <p>2024 © THEUZZ DEV</p>
     </footer>
 
-    <button id="to-top-btn" title="Voltar ao topo" class="fixed bottom-6 right-6 z-50 bg-white text-black h-12 w-12 flex items-center justify-center border border-zinc-700 hover:bg-zinc-300 transition-all pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </button>
-    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            const typewriterElement = document.getElementById('typewriter');
-            if (typewriterElement) {
-                const textToType = "Backend Developer";
-                let i = 0;
-                function typeWriter() {
-                    if (i < textToType.length) {
-                        typewriterElement.innerHTML += textToType.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 100);
-                    }
+            const txt = "Java & Python Developer";
+            const el = document.getElementById('typewriter');
+            let i = 0;
+            const type = () => {
+                if(i < txt.length) {
+                    el.innerHTML += txt.charAt(i);
+                    i++;
+                    setTimeout(type, 80);
                 }
-                setTimeout(typeWriter, 800);
-            }
+            };
+            setTimeout(type, 300);
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -296,31 +233,7 @@
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-
-            const body = document.body;
-            window.addEventListener('mousemove', (e) => {
-                body.style.setProperty('--x', e.clientX + 'px');
-                body.style.setProperty('--y', e.clientY + 'px');
-            });
-
-            const toTopBtn = document.getElementById('to-top-btn');
-            if (toTopBtn) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        toTopBtn.classList.add('show');
-                        toTopBtn.classList.remove('pointer-events-none');
-                    } else {
-                        toTopBtn.classList.remove('show');
-                        toTopBtn.classList.add('pointer-events-none');
-                    }
-                });
-                toTopBtn.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
 </body>
